@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import logo from "../../assets/logo.png";
 import Input from "../Input";
+import Button from "../Button";
+import { useNavigate } from "react-router-dom";
 
 const validacao = {
   cnpj: {
@@ -12,15 +14,58 @@ const validacao = {
 const Login = () => {
   const [value, setValue] = useState("");
   const [erro, setErro] = useState(null);
+  const navigate = useNavigate();
 
-  console.log(validacao.cnpj);
+  function validate(value) {
+    if (validacao.cnpj && !validacao.cnpj.regex.test(value)) {
+      setErro(validacao.cnpj.mensagem);
+      return false;
+    } else {
+      setErro(null);
+      return true;
+    }
+  }
+
+  function onChange({ target }) {
+    setErro(null);
+    setValue(target.value);
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    if (validate(value)) {
+      navigate("/contratos");
+    }
+  }
 
   return (
     <div className="w-screen h-screen flex items-center justify-center">
-      <div className="w-full max-w-5xl bg-white border-2 rounded-lg border-gray-300">
+      <div className="w-full max-w-xl bg-white border-2 rounded-lg border-gray-300 shadow-md shadow-zinc-800/30 flex items-center justify-center flex-col p-10">
         <img src={logo} alt="logo da VFlows" className="w-24 h-24 md:w-48" />
-        <h1 className="text-xl uppercase">Pagamento de Fornecedor</h1>
-        <Input />
+        <h1 className="text-xl uppercase mt-6">Pagamento de Fornecedor</h1>
+
+        <form
+          onSubmit={handleSubmit}
+          className="border-2 border-zinc-100 rounded-lg pt-4 pb-12 pr-8 pl-8"
+        >
+          <Input
+            name="cnpj"
+            type="number"
+            value={value}
+            label="CNPJ"
+            onChange={onChange}
+            onBlur={() => {
+              if (value.length === 0) {
+                setErro("Preencha um valor");
+                return false;
+              }
+            }}
+            erro={erro}
+          />
+          <p>{value}</p>
+          <Button>Acessar</Button>
+        </form>
       </div>
     </div>
   );

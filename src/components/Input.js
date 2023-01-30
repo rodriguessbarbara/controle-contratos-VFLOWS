@@ -1,9 +1,24 @@
-import React from 'react'
+import React from "react";
 
-const Input = () => {
+const Input = ({ label, type, name, value, onChange, onBlur, erro }) => {
   return (
-    <div>input</div>
-  )
-}
+    <div>
+      
+      <label htmlFor={name} className="flex">
+        {label}
+      </label>
+      <input className="mb-2 text-black border-2 border-zinc-200 rounded-md hover:border-zinc-400 focus:border-zinc-400"
+        type={type}
+        name={name}
+        id={name}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+      />
+      {erro ? <p className="text-red-500">{erro}</p> : ''}
 
-export default Input
+    </div>
+  );
+};
+
+export default Input;
