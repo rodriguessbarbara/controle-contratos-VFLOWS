@@ -1,9 +1,14 @@
 import React from 'react'
-import data from "../../acessos-mockup";
+import Header from './Header'
+
 
 const ContratosLista = () => {
   return (
-    <div>ContratosLista</div>
+    <div className="w-screen h-screen flex items-center justify-center">
+      <div className="w-full h-[90%] m-8 bg-white border-1 rounded flex flex-col">
+      <Header/>
+      </div>
+    </div>
   )
 }
 
