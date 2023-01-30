@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/logo.png";
 import Input from "../Input";
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
-import users from "../../acessos-mockup";
+import { cnpjMask } from "../../utils/cnpj-mask";
+import { UserContext } from "../../UserContext";
+import users from "../../utils/acessos-mockup";
 
 const validacao = {
   cnpj: {
@@ -18,6 +20,7 @@ const Login = () => {
   const [message, setMessage] = useState(null);
 
   const navigate = useNavigate();
+  const {getUserContracts} = useContext(UserContext);
 
   function validate(value) {
     if (validacao.cnpj && !validacao.cnpj.regex.test(value)) {
@@ -30,7 +33,7 @@ const Login = () => {
   }
 
   function onChange({ target }) {
-    setMessage(null)
+    setMessage(null);
     setErro(null);
     setValue(target.value);
   }
@@ -39,16 +42,17 @@ const Login = () => {
     event.preventDefault();
 
     if (validate(value)) {
-      users.forEach(({cnpj}) => {
+      users.forEach(({ cnpj }) => {
         if (cnpj.includes(value)) {
+          getUserContracts(cnpj);
           navigate("/contratos");
         } else {
-          setMessage('CNPJ sem contratos ativos.')
+          setMessage("CNPJ sem contratos ativos.");
         }
-      })
+      });
     }
   }
-  
+
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div className="w-full max-w-3xl md:max-w-xl bg-white border-2 rounded-lg border-gray-300 shadow-md shadow-zinc-800/30 flex items-center justify-center flex-col p-10">
@@ -61,8 +65,8 @@ const Login = () => {
         >
           <Input
             name="cnpj"
-            type="number"
-            value={value}
+            type="text"
+            value={cnpjMask(value)}
             label="CNPJ"
             onChange={onChange}
             onBlur={() => {
@@ -74,7 +78,7 @@ const Login = () => {
             erro={erro}
             message={message}
           />
-          
+
           <Button>Acessar</Button>
         </form>
       </div>

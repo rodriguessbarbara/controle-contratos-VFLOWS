@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/logo.png";
+import { UserContext } from "../../UserContext";
 import HeaderContrato from "./HeaderContrato";
 
 const Header = () => {
+  const { cnpj, data } = useContext(UserContext);
+  console.log(cnpj);
+  console.log(data);
+
   return (
     <header className="flex flex-col m-5">
       <div className="flex items-center gap-5 mb-4">
