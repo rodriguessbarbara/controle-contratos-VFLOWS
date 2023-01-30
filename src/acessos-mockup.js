@@ -1,6 +1,6 @@
 const users = [
   {
-    cnpj: "11.234.567/0001-00",
+    cnpj: "11234567000100",
     razaoSocial: "Razão Social do Fornecedor Logado",
     nomeFantasia: "Nome Fantasia do Fornecedor Logado",
     contracts: [

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ label, type, name, value, onChange, onBlur, erro }) => {
+const Input = ({ label, type, name, value, onChange, onBlur, erro, message}) => {
   return (
     <div>
       
@@ -12,11 +12,13 @@ const Input = ({ label, type, name, value, onChange, onBlur, erro }) => {
         name={name}
         id={name}
         value={value}
+        placeholder="00.000.000/0000-00"
         onChange={onChange}
         onBlur={onBlur}
       />
-      {erro ? <p className="text-red-500">{erro}</p> : ''}
 
+      {erro ? <p className="text-red-500">{erro}</p> : ''}
+      {message ? <p className="font-medium text-stone-500">{message}</p> : ''}
     </div>
   );
 };

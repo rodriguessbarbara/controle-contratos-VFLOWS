@@ -3,6 +3,7 @@ import logo from "../../assets/logo.png";
 import Input from "../Input";
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
+import users from "../../acessos-mockup";
 
 const validacao = {
   cnpj: {
@@ -14,6 +15,8 @@ const validacao = {
 const Login = () => {
   const [value, setValue] = useState("");
   const [erro, setErro] = useState(null);
+  const [message, setMessage] = useState(null);
+
   const navigate = useNavigate();
 
   function validate(value) {
@@ -27,6 +30,7 @@ const Login = () => {
   }
 
   function onChange({ target }) {
+    setMessage(null)
     setErro(null);
     setValue(target.value);
   }
@@ -35,10 +39,16 @@ const Login = () => {
     event.preventDefault();
 
     if (validate(value)) {
-      navigate("/contratos");
+      users.forEach(({cnpj}) => {
+        if (cnpj.includes(value)) {
+          navigate("/contratos");
+        } else {
+          setMessage('CNPJ sem contratos ativos.')
+        }
+      })
     }
   }
-
+  
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div className="w-full max-w-xl bg-white border-2 rounded-lg border-gray-300 shadow-md shadow-zinc-800/30 flex items-center justify-center flex-col p-10">
@@ -62,10 +72,12 @@ const Login = () => {
               }
             }}
             erro={erro}
+            message={message}
           />
-          <p>{value}</p>
+
           <Button>Acessar</Button>
         </form>
+        
       </div>
     </div>
   );
