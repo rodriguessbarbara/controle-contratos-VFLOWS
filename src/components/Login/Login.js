@@ -79,7 +79,7 @@ const Login = () => {
             message={message}
           />
 
-          <Button>Acessar</Button>
+          <Button color="bg-lime-600" borderColor="shadow-lime-800/80">Acessar</Button>
         </form>
       </div>
     </div>
