@@ -1,17 +1,24 @@
 import React, { createContext, useState } from "react";
+import users from "./utils/acessos-mockup";
 
 export const UserContext = createContext();
 
 export const UserInfo = ({ children }) => {
   const [data, setData] = useState([]);
+  const [dataContracts, setDataContracts] = useState([]);
   const [cnpj, setCnpj] = useState("");
   const [erro, setErro] = useState(false);
 
-  function getUserContracts(cnpj) {
+  function getUserContracts(cnpjData) {
     try {
       setErro(null);
-      setCnpj(cnpj);
-      cnpj.map(({ contracts }) => setData((prev) => [...prev, contracts])); // aqui eu to passando o valor do cnpj, e nao o array do cnpj
+      setCnpj(cnpjData);
+      users.map((user) => {
+        if (user.cnpj.includes(cnpjData)) {
+          setData((prev) => [...prev, user.razaoSocial, user.nomeFantasia])
+          setDataContracts((prev) => [...prev, user.contracts])
+        }
+      });
     } catch (err) {
       setErro(err.message);
     } finally {
@@ -20,7 +27,7 @@ export const UserInfo = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={{ getUserContracts, data, cnpj, erro }}>
+    <UserContext.Provider value={{ getUserContracts, data, dataContracts, cnpj, erro }}>
       {children}
     </UserContext.Provider>
   );

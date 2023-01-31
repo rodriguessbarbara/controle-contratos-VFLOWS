@@ -1,12 +1,12 @@
 import React from "react";
 
-const HeaderContrato = ({razaoSocial, nomeFantasia, cnpj, titulo}) => {
+const HeaderUser = ({razaoSocial, nomeFantasia, cnpj, titulo}) => {
   return (
     <>
       <div className="p-2 flex flex-row justify-between border-2 border-red-300 rounded mb-2">
         <div>
-          <p>Razão Social: {razaoSocial}</p>
-          <p>Nome Fantasia: {nomeFantasia}</p>
+          <p className="font-semibold">Razão Social: {razaoSocial}</p>
+          <p className="font-semibold">Nome Fantasia: {nomeFantasia}</p>
         </div>
 
         <div>
@@ -23,4 +23,4 @@ const HeaderContrato = ({razaoSocial, nomeFantasia, cnpj, titulo}) => {
   );
 };
 
-export default HeaderContrato;
+export default HeaderUser;

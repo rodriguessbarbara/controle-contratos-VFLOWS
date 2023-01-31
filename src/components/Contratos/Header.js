@@ -1,12 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { UserContext } from "../../UserContext";
-import HeaderContrato from "./HeaderContrato";
+import HeaderUser from "./HeaderUser";
 
 const Header = () => {
+  const navigate = useNavigate();
   const { cnpj, data } = useContext(UserContext);
-  console.log(cnpj);
-  console.log(data);
+
+  useEffect(() => {
+    if (!cnpj) navigate("/");
+  }, [navigate, cnpj])
 
   return (
     <header className="flex flex-col m-5">
@@ -17,8 +21,7 @@ const Header = () => {
         </h1>
       </div>
 
-    <HeaderContrato razaoSocial="teste1" nomeFantasia="nome teste1" cnpj="12.345.678/000-00" titulo="Contratos Vinculados"/>
-
+    <HeaderUser razaoSocial={data[0]} nomeFantasia={data[1]} cnpj={cnpj} titulo="Contratos Vinculados"/>
     </header>
   );
 };
