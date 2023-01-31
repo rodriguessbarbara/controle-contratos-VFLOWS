@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
-import Header from "./Header";
+import Header from "../Header";
 import Button from "../Button";
 import Footer from "../Footer";
 
@@ -11,8 +11,8 @@ const ContratosLista = () => {
   const [erro, setErro] = useState(false);
 
   function handleNextPage(event) {
-    event.preventDefault();
-
+    // event.preventDefault();
+    navigate("/detalhes");
   }
 
   return (
@@ -60,7 +60,7 @@ const ContratosLista = () => {
             Anterior
           </Button>
           <Button color="bg-lime-700" borderColor="shadow-lime-600/80" onClick={handleNextPage}>
-            Próximos
+            Próximo
           </Button>
         </div>
         <Footer/>
