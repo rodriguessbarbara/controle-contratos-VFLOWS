@@ -2,16 +2,17 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import Header from "../Header";
-import Button from "../Button";
+import Button from "../Form/Button";
 import Footer from "../Footer";
 
 const ContratosLista = () => {
   const navigate = useNavigate();
-  const { dataContracts } = useContext(UserContext);
+  const { dataContracts, getContract } = useContext(UserContext);
   const [erro, setErro] = useState(false);
 
   function handleNextPage(event) {
     // event.preventDefault();
+    getContract('11002200-01');
     navigate("/detalhes");
   }
 

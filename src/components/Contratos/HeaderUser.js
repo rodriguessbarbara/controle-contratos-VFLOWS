@@ -5,8 +5,8 @@ const HeaderUser = ({razaoSocial, nomeFantasia, cnpj, titulo}) => {
     <>
       <div className="p-2 flex flex-row justify-between border-2 border-red-300 rounded mb-2">
         <div>
-          <p className="font-semibold">Razão Social: {razaoSocial}</p>
-          <p className="font-semibold">Nome Fantasia: {nomeFantasia}</p>
+          <p>Razão Social: {razaoSocial}</p>
+          <p>Nome Fantasia: {nomeFantasia}</p>
         </div>
 
         <div>

@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import logo from "../../assets/logo.png";
-import Input from "../Input";
-import Button from "../Button";
+import Input from "../Form/Input";
+import Button from "../Form/Button";
 import { useNavigate } from "react-router-dom";
 import { cnpjMask } from "../../utils/cnpj-mask";
 import { UserContext } from "../../UserContext";
 import users from "../../utils/acessos-mockup";
+
+import { Form } from "@unform/web";
 
 const validacao = {
   cnpj: {
@@ -20,7 +22,7 @@ const Login = () => {
   const [message, setMessage] = useState(null);
 
   const navigate = useNavigate();
-  const {getUserContracts} = useContext(UserContext);
+  const { getUserContracts } = useContext(UserContext);
 
   function validate(value) {
     if (validacao.cnpj && !validacao.cnpj.regex.test(value)) {
@@ -39,8 +41,6 @@ const Login = () => {
   }
 
   async function handleSubmit(event) {
-    event.preventDefault();
-
     if (validate(value)) {
       users.forEach(({ cnpj }) => {
         if (cnpj.includes(value)) {
@@ -59,7 +59,7 @@ const Login = () => {
         <img src={logo} alt="logo da VFlows" className="w-24 h-24 md:w-48" />
         <h1 className="text-xl uppercase mt-6">Pagamento de Fornecedor</h1>
 
-        <form
+        <Form
           onSubmit={handleSubmit}
           className="border-2 border-zinc-100 rounded-lg pt-4 pb-12 pr-8 pl-8"
         >
@@ -75,12 +75,19 @@ const Login = () => {
                 return false;
               }
             }}
+            placeholder="00.000.000/0000-00"
             erro={erro}
             message={message}
           />
 
-          <Button color="bg-lime-600" borderColor="shadow-lime-800/80">Acessar</Button>
-        </form>
+          <Button
+            type="submit"
+            color="bg-lime-600"
+            borderColor="shadow-lime-800/80"
+          >
+            Acessar
+          </Button>
+        </Form>
       </div>
     </div>
   );
