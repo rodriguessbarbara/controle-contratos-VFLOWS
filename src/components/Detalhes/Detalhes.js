@@ -8,10 +8,9 @@ import Button from "../Form/Button";
 import { useNavigate } from "react-router-dom";
 
 const Detalhes = () => {
-  const [value, setValue] = useState("");
   const [erro, setErro] = useState(null);
   const [message, setMessage] = useState(null);
-  const { dataContracts, contract } = useContext(UserContext);
+  const { contract } = useContext(UserContext);
   const [showImpostos, setShowImpostos] = useState(false);
   const [showTecnica, setShowTecnica] = useState(false);
 
@@ -41,7 +40,6 @@ const Detalhes = () => {
   }
 
   function sendData() {
-    console.log("handlenext");
     window.alert("Solicitação 999999 foi enviada com sucesso.");
     navigate("/");
   }
@@ -208,6 +206,9 @@ const Detalhes = () => {
           ) : (
             ""
           )}
+
+            <button className="bg-zinc-600 text-white pl-6 pr-6 pt-2 pb-2 mr-8">Anexar Nota Fiscal</button>
+            <input type="file"/>
 
           <div className="flex gap-16 ml-8 mr-8 mb-10">
             <Button
