@@ -1,13 +1,14 @@
 # Teste técnico - VFLOWS
 Este teste é uma aplicação Front-End de gerenciamento de pagamentos de contratos.
 
+### CNPJ padrão p/ login : 11.234.567/0001-00
+
 #### Nesse projeto eu trabalhei com as tecnologias:
   - Javascript
   - React
   - React Hooks
   - React Router Dom
   - TailwindCSS.
-
 
 ### Instalação
 1. Clonar o repositório
