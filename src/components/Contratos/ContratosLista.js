@@ -10,25 +10,30 @@ const ContratosLista = () => {
   const { dataContracts, getContract } = useContext(UserContext);
   const [erro, setErro] = useState(false);
   const [value, setValue] = useState([]);
+  const [valueId, setValueId] = useState('');
 
   function handleChange({ target }) {
     setErro(null);
 
     if (target.checked) {
       setValue([...value, target.value]);
+      setValueId([...valueId, dataContracts[0][Number(target.value)]])
     } else {
       setValue(value.filter((evento) => evento !== target.value));
-    }
+      setValueId('')
+      //setValueId(valueId.filter((evento) => evento !== valueId))
+    }    
   }
+
+  //console.log(valueId[0].id)
 
   function handleNextPage({ target }) {
     if (value.length) {
       if (value.length > 1) {
         setErro('Somente um Contrato deverá ser selecionado');
       } else {
-        console.log(value)
-        getContract("11002200-01");
-        // navigate("/detalhes"); //falta pegar o id da linha que estiver checked
+        getContract(valueId[0].id);
+        navigate("/detalhes");
       }
     } else{
       setErro('Ao menos um Contrato deverá ser selecionado');
@@ -55,13 +60,13 @@ const ContratosLista = () => {
             {dataContracts.map((contract) =>
               contract.map(({ id, nome, retencao }, index) => (
                 <tr
-                  key={`${id} ${index}`}
+                  key={id}
                   className="odd:bg-zinc-100 even:bg-zinc-200 p-2 text-center border-2 border-white"
                 >
                   <td>
                     <input
                       type="checkbox"
-                      value="check"
+                      value={index}
                       onChange={handleChange}
                     />
                   </td>

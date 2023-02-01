@@ -29,11 +29,11 @@ export const UserInfo = ({ children }) => {
     }
   }
 
-  function getContract(id) {
+  function getContract(valueId) {
     try {
       dataContracts.map((contract) =>
         contract.map(({ id, nome }) => {
-          if (id.includes("11002200-01")) {
+          if (id.includes(valueId)) {
             setContract((prev) => [...prev, id, nome]);
           }
           return true;
