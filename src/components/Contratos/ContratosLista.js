@@ -9,11 +9,30 @@ const ContratosLista = () => {
   const navigate = useNavigate();
   const { dataContracts, getContract } = useContext(UserContext);
   const [erro, setErro] = useState(false);
+  const [value, setValue] = useState([]);
 
-  function handleNextPage(event) {
-    // event.preventDefault();
-    getContract('11002200-01');
-    navigate("/detalhes");
+  function handleChange({ target }) {
+    setErro(null);
+
+    if (target.checked) {
+      setValue([...value, target.value]);
+    } else {
+      setValue(value.filter((evento) => evento !== target.value));
+    }
+  }
+
+  function handleNextPage({ target }) {
+    if (value.length) {
+      if (value.length > 1) {
+        setErro('Somente um Contrato deverá ser selecionado');
+      } else {
+        console.log(value)
+        getContract("11002200-01");
+        // navigate("/detalhes"); //falta pegar o id da linha que estiver checked
+      }
+    } else{
+      setErro('Ao menos um Contrato deverá ser selecionado');
+    }
   }
 
   return (
@@ -40,7 +59,11 @@ const ContratosLista = () => {
                   className="odd:bg-zinc-100 even:bg-zinc-200 p-2 text-center border-2 border-white"
                 >
                   <td>
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      value="check"
+                      onChange={handleChange}
+                    />
                   </td>
                   <td>{nome}</td>
                   <td>{id}</td>
@@ -56,16 +79,26 @@ const ContratosLista = () => {
           </tbody>
         </table>
 
+        {erro ? <p className="ml-5 font-semibold text-red-500">{erro}</p> : ''}
+
         <div className="flex gap-16 ml-8 mr-8 mb-10">
-          <Button color="bg-yellow-500" borderColor="shadow-yellow-600/80" onClick={() => navigate("/")}>
+          <Button
+            color="bg-yellow-500"
+            borderColor="shadow-yellow-600/80"
+            onClick={() => navigate("/")}
+          >
             Anterior
           </Button>
-          <Button color="bg-lime-700" borderColor="shadow-lime-600/80" onClick={handleNextPage}>
+          <Button
+            color="bg-lime-700"
+            borderColor="shadow-lime-600/80"
+            onClick={handleNextPage}
+          >
             Próximo
           </Button>
         </div>
-        <Footer/>
 
+        <Footer />
       </div>
     </div>
   );
