@@ -34,7 +34,7 @@ export const UserInfo = ({ children }) => {
       dataContracts.map((contract) =>
         contract.map(({ id, nome }) => {
           if (id.includes(valueId)) {
-            setContract((prev) => [...prev, id, nome]);
+            setContract([id, nome])            
           }
           return true;
         })
