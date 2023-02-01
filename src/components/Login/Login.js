@@ -8,6 +8,7 @@ import { UserContext } from "../../UserContext";
 import users from "../../utils/acessos-mockup";
 
 import { Form } from "@unform/web";
+import Head from "../Head";
 
 const validacao = {
   cnpj: {
@@ -55,6 +56,8 @@ const Login = () => {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center">
+      <Head title="Login" description="Página inicial para login de CNPJ" />
+
       <div className="w-full max-w-3xl md:max-w-xl bg-white border-2 rounded-lg border-gray-300 shadow-md shadow-zinc-800/30 flex items-center justify-center flex-col p-10">
         <img src={logo} alt="logo da VFlows" className="w-24 h-24 md:w-48" />
         <h1 className="text-xl uppercase mt-6">Pagamento de Fornecedor</h1>

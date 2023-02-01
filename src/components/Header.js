@@ -24,7 +24,7 @@ const Header = () => {
       <header className="flex flex-col m-5">
         <div className="flex items-center gap-5 mb-4">
           <img src={logo} alt="Logo da VFlows" className="w-48 h-24" />
-          <h1 className="text-5xl font-normal uppercase	">
+          <h1 className="text-5xl font-normal uppercase md:text-3xl	sm:text-md">
             Pagamento de Fornecedor
           </h1>
         </div>

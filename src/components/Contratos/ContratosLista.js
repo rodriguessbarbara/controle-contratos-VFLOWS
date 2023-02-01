@@ -4,6 +4,7 @@ import { UserContext } from "../../UserContext";
 import Header from "../Header";
 import Button from "../Form/Button";
 import Footer from "../Footer";
+import Head from "../Head";
 
 const ContratosLista = () => {
   const navigate = useNavigate();
@@ -42,6 +43,8 @@ const ContratosLista = () => {
 
   return (
     <div className="flex items-center justify-center">
+      <Head title="Contracts" description="Página de lista dos contratos" />
+
       <div className="w-full h-full m-10 bg-white border-1 rounded flex flex-col">
         <Header />
 

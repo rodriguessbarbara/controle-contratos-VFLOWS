@@ -6,6 +6,7 @@ import { UserContext } from "../../UserContext";
 import Footer from "../Footer";
 import Button from "../Form/Button";
 import { useNavigate } from "react-router-dom";
+import Head from "../Head";
 
 const Detalhes = () => {
   const [erro, setErro] = useState(null);
@@ -46,6 +47,8 @@ const Detalhes = () => {
 
   return (
     <div className="flex items-center justify-center">
+      <Head title="Details" description="Página de detalhes do contrato" />
+
       <div className="w-full h-full m-10 bg-white border-1 rounded flex flex-col">
         <div className="ml-5 mr-5">
           <Header />
