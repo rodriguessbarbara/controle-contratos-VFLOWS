@@ -9,6 +9,7 @@ Este teste é uma aplicação Front-End de gerenciamento de pagamentos de contra
   - React Hooks
   - React Router Dom
   - TailwindCSS.
+  - Unform API
 
 ### Instalação
 1. Clonar o repositório
